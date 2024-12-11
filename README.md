@@ -57,20 +57,17 @@ PAYPAL_SANDBOX_CLIENT_SECRET=
 
 ```php
 class MyNewPaymentGateway implements PaymentGatewayInterface {
-    public function pay(float $amount, array $details): array {
-        // Implementation details
-    }
     public function pay(float $amount, array $details = []):mixed
     {
         // Implementation details
     };
     public function redirectToGateway($response, float $amount, array $details = [])
     {
-       // Implementation details
+       // Implementation redirect to gateway checkout
     };
     public function completeThePayment($request)
     {
-       // Implementation details
+       // Implementation complete the payment
     };
 }
 
