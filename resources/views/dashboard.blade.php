@@ -7,6 +7,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                @if(session('message'))
+                    <h2 class="alert alert-success text-white bg-success">{{session('message')}}</h2>
+                @endif
+                @if(session('error'))
+                    <h2 class="alert alert-danger text-white">  {{session('error')}}</h2>
+                @endif
                 <div class="p-6 text-gray-900">
                     <div class="card"
                          style="width: 18rem; border-radius: 10px; overflow: hidden; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
@@ -24,9 +30,11 @@
                                 <input type="hidden" id="payment_method" name="payment_method" value="stripe">
                                 <div class="d-flex justify-content-between mt-2">
                                     <button class="btn btn-warning btn-sm me-0 mr-0"
-                                            onclick="setPaymentMethod('stripe')">Pay By Card</button>
+                                            onclick="setPaymentMethod('stripe')">Pay By Card
+                                    </button>
                                     <button class="btn btn-primary btn-sm ml-0"
-                                            onclick="setPaymentMethod('paypal')">Pay By PayPal</button>
+                                            onclick="setPaymentMethod('paypal')">Pay By PayPal
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -35,7 +43,6 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         function setPaymentMethod(method) {
             document.getElementById('payment_method').value = method;

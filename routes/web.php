@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/dashboard', function (\Illuminate\Http\Request $request) {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -17,9 +17,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/checkout', [PaymentController::class, 'Checkout'])->name('Checkout');
+    // payment routes
     Route::post('/pay', [PaymentController::class, 'proceedToPay'])->name('pay');
-
+    Route::get('/success-payment', [PaymentController::class, 'handlePaymentSuccess'])->name('success');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
